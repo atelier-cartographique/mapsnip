@@ -3,7 +3,12 @@
         "host"     : "127.0.0.1",
         "user"     : "pierre",
         "password" : "plokplok",
-        "database" : "waend"
+        "database" : "waend",
+        "queries": {
+            "schema": "public",
+            "prefix": "",
+            "table": "spreads"
+        }
 
     },
     "server":{
