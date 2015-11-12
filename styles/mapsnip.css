@@ -1,0 +1,48 @@
+
+
+body {
+
+font-family: sans-serif;
+font-size: 10pt;
+}
+
+h1{font-size: 14pt;}
+h2{font-size: 12pt;}
+
+p {padding: 5px 0px;}
+
+a,
+a:link,
+a:visited {
+	font-style: italic;
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
+#map-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	z-index: 0;
+}
+
+.infos {
+	width: 200px;
+	position: absolute;
+	top: 24px;
+	left: 24px;
+	padding: 12px;
+	background: #F8F8F8;
+	z-index: 1;
+}
+
+.credits {
+	font-size: 9pt;
+}
