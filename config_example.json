@@ -1,0 +1,14 @@
+{
+    "pg": {
+        "host"     : "127.0.0.1",
+        "user"     : "pierre",
+        "password" : "plokplok",
+        "database" : "waend"
+
+    },
+    "server":{
+        "port": 8000,
+        "viewEngine" : "ejs",
+        "views" : "/home/pierre/System/src/map_snippet/views"
+    }
+}

@@ -33,9 +33,9 @@ $(document).ready(function(){
         center: [51.505, -0.09],
         zoom: 13
     });
-    // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?', {
-    //     attribution: 'ATTR',
-    //     maxZoom: 18
-    // }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?', {
+        attribution: 'ATTR',
+        maxZoom: 18
+    }).addTo(map);
     $('#submit').on('click', getSVG);
 });
