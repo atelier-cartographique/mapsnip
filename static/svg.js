@@ -49,26 +49,55 @@ function getSVG () {
                 var ps = results[i].svg;
                 var bbox = Raphael.pathBBox(ps);
                 var m = Raphael.matrix(1,0,0,1,0,0);
-                var s = cellWidth / bbox.width
+                var m1 = Raphael.matrix(1,0,0,1,0,0);
+
+                var s = cellWidth / bbox.width;
+                if (bbox.height > bbox.width) {
+                    s = lineHeight / bbox.height;
+                }
                 m.translate((-bbox.x) * s, (-bbox.y) * s);
                 m.scale(s);
                 m.translate(curX / s, curY / s);
+
                 var tps = Raphael.mapPath(ps, m);
-                // console.log(Raphael.pathBBox(tps));
                 var elem = paper.path(tps);
                 elems.push(elem);
-                elem.data('bbox', Raphael.pathBBox(tps));
+
+                var bbox1 = elem.getBBox();
+                var s1 = rect.width / bbox1.width;
+                m1.translate((-bbox1.x) * s1, (-bbox1.y) * s1);
+                m1.scale(s1);
+                m1.translate(0, 0);
+                // elem.transform(m.toTransformString());
+                //
+                // var dr = paper.rect(bbox.x, bbox.y, bbox.width, bbox.height);
+                // dr.transform(m.toTransformString());
+
+                elem.data('mat', Raphael.matrix(1,0,0,1,0,0));
+                elem.data('mat1', m1);
+                elem.data('layer', 'back');
+
                 elem.click(function(){
-                    var bb = this.data('bbox');
-                    var me = Raphael.matrix(1,0,0,1,0,0);
-                    var se = rect.width / bb.width
-                    me.translate((-bb.x) * se, (-bb.y) * se);
-                    me.scale(se);
-                    this.transform(me.toTransformString());
-                    this.attr({
-                        fill: 'blue'
-                    });
-                    this.toFront();
+                    var layer = this.data('layer'),
+                        mat = this.data('mat'),
+                        mat1 = this.data('mat1');
+                    if ('back' === layer) {
+                        this.transform(mat1.toTransformString());
+                        this.attr({
+                            fill: '#DD0014',
+                            stroke: 'none'
+                        });
+                        this.toFront();
+                        this.data('layer', 'fore');
+                    }
+                    else if ('fore' === layer) {
+                        this.transform(mat.toTransformString());
+                        this.attr({
+                            fill: 'grey'
+                        });
+                        this.toBack();
+                        this.data('layer', 'back');
+                    }
                 });
             }
         }
