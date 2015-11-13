@@ -32,7 +32,7 @@ a:hover {
 	bottom: 24px;
 	left: 272px;
 	z-index: 0;
-	border: 1px solid black;
+	border: 1px dashed black;
 }
 
 .infos {
