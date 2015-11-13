@@ -10,7 +10,6 @@ background: #f8f8f8;
 h1{font-size: 14pt;}
 h2{font-size: 12pt;}
 
-p {padding: 5px 0px;}
 
 a,
 a:link,
@@ -48,7 +47,8 @@ a:hover {
 }
 
 .credits {
-	font-size: 9pt;
+	font-size: 8pt;
+	text-align: center;
 }
 
 .separator {
