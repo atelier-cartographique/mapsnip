@@ -20,14 +20,22 @@ function getSVG () {
         while (container.firstChild) {
             container.removeChild(container.firstChild);
         }
+
+        var maxRow = 14,
+            lineN = 0,
+            cellN = 0;
+        for (var r = 1; r <= maxRow; r++) {
+            lineN = r;
+            cellN = r;
+            if ((r * r) >= results.length) {
+                break;
+            }
+        }
+
         var paper = Raphael(container, rect.width, rect.height),
             elems = paper.set(),
             curX = 0,
             curY = 0,
-            lastHeight = 0,
-            lineN = 4,
-            rLen = Math.min(results.length, 200),
-            cellN = Math.ceil(rLen / lineN),
             lineHeight = rect.height / lineN,
             cellWidth = rect.width / cellN;
         for (var l = 0; l < lineN; l++) {
@@ -47,7 +55,21 @@ function getSVG () {
                 m.translate(curX / s, curY / s);
                 var tps = Raphael.mapPath(ps, m);
                 // console.log(Raphael.pathBBox(tps));
-                elems.push( paper.path(tps) );
+                var elem = paper.path(tps);
+                elems.push(elem);
+                elem.data('bbox', Raphael.pathBBox(tps));
+                elem.click(function(){
+                    var bb = this.data('bbox');
+                    var me = Raphael.matrix(1,0,0,1,0,0);
+                    var se = rect.width / bb.width
+                    me.translate((-bb.x) * se, (-bb.y) * se);
+                    me.scale(se);
+                    this.transform(me.toTransformString());
+                    this.attr({
+                        fill: 'blue'
+                    });
+                    this.toFront();
+                });
             }
         }
         elems.attr({
