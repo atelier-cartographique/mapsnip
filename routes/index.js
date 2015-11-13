@@ -27,7 +27,7 @@ function makeSVG (request, response){
             response.send(rows);
         })
         .catch(function(err){
-            response.end(err);
+            response.end('PgError');
         });
 }
 
