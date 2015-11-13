@@ -59,8 +59,20 @@ a:hover {
 }
 
 button {
-	width: 90px;
+	width: 110px;
 	margin: 0px auto;
 	display: block;
 	margin-bottom: 10px;
+	padding: 8px 12px;
+	background-color: #f8f8f8;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px 0px #888888;
+	color: #1CA21C;
+	font-size: 10pt;
+	}
+
+button:hover {
+	cursor: pointer;
+	background-color: #fff;
 	}
